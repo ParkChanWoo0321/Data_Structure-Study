@@ -1,116 +1,117 @@
-// 1. Äü ¼ÒÆ® ±¸Çö (Ã¥¿¡ ³ª¿Í ÀÖ´Â ¹öÀü-±³Àç ÇÁ·Î±×·¥ 7.6)
-// * Äü¼ÒÆ® ½Ã°£ º¹Àâµµ ºÐ¼®ÇÏ±â
-// (½Ã°£ º¹Àâµµ¸¦ ºÐ¼®ÇÑ ÈÄ, ÀÌ¸¦ °³¼±ÇÏ±â À§ÇÑ Ã¥°ú ´Ù¸¥ ¹öÀüÀÇ Äü ¼ÒÆ® ¾Ë°í¸®Áò Ã£¾Æ ±¸ÇöÇÏ±â)
-// 1.1 Äü ¼ÒÆ® ±¸Çö (Ã¥¿¡ ³ª¿Í ÀÖ´Â ¹öÀü-±³Àç ÇÁ·Î±×·¥ 7.6)
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <time.h>
-//#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t)) 
-//typedef struct {
-//	int key;
-//} element;
-//void quickSort(element a[], int left, int right)
-//{
-//	int pivot, i, j;
-//	element temp;
-//	if (left < right)
-// {
-//		i = left;
-//		j = right + 1;
-//		pivot = a[left].key;
-//		do {
-//			do i++; while (i <= right && a[i].key < pivot);
-//			do j--; while (a[j].key > pivot);
-//			if (i < j) SWAP(a[i], a[j], temp);
-//		} while (i < j);
-//		SWAP(a[left], a[j], temp);
-//		quickSort(a, left, j - 1);
-//		quickSort(a, j + 1, right);
-//	}
-//}
-//int main(void) 
-// {
-//	element list[] = 
-//	{ {26}, {5}, {77}, {1}, {61}, {11}, {59}, {15}, {48}, {19} };
-//	int size = sizeof(list) / sizeof(list[0]);
-//	printf("Á¤·Ä Àü: ");
-//	for (int i = 0; i < size; i++)
-//		printf("%d ", list[i].key);
-//	printf("\n");
-//	clock_t start = clock();
-//	quickSort(list, 0, size - 1);
-//	clock_t end = clock();
-//	double time_taken = (double)(end - start)
-//        / CLOCKS_PER_SEC * 1000; 
-//	printf("Á¤·Ä ÈÄ: ");
-//	for (int i = 0; i < size; i++)
-//		printf("%d ", list[i].key);
-//	printf("\n");
-//	printf("O(n) : %.3f\n", time_taken);
-//}
+ 1. í€µ ì†ŒíŠ¸ êµ¬í˜„ (ì±…ì— ë‚˜ì™€ ìžˆëŠ” ë²„ì „-êµìž¬ í”„ë¡œê·¸ëž¨ 7.6)
+ * í€µì†ŒíŠ¸ ì‹œê°„ ë³µìž¡ë„ ë¶„ì„í•˜ê¸°
+ (ì‹œê°„ ë³µìž¡ë„ë¥¼ ë¶„ì„í•œ í›„, ì´ë¥¼ ê°œì„ í•˜ê¸° ìœ„í•œ ì±…ê³¼ ë‹¤ë¥¸ ë²„ì „ì˜ í€µ ì†ŒíŠ¸ ì•Œê³ ë¦¬ì¦˜ ì°¾ì•„ êµ¬í˜„í•˜ê¸°)
+ 1.1 í€µ ì†ŒíŠ¸ êµ¬í˜„ (ì±…ì— ë‚˜ì™€ ìžˆëŠ” ë²„ì „-êµìž¬ í”„ë¡œê·¸ëž¨ 7.6)
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t)) 
+typedef struct {
+	int key;
+} element;
+void quickSort(element a[], int left, int right)
+{
+	int pivot, i, j;
+	element temp;
+	if (left < right)
+ {
+		i = left;
+		j = right + 1;
+		pivot = a[left].key;
+		do {
+			do i++; while (i <= right && a[i].key < pivot);
+			do j--; while (a[j].key > pivot);
+			if (i < j) SWAP(a[i], a[j], temp);
+		} while (i < j);
+		SWAP(a[left], a[j], temp);
+		quickSort(a, left, j - 1);
+		quickSort(a, j + 1, right);
+	}
+}
+int main(void) 
+ {
+	element list[] = 
+	{ {26}, {5}, {77}, {1}, {61}, {11}, {59}, {15}, {48}, {19} };
+	int size = sizeof(list) / sizeof(list[0]);
+	printf("ì •ë ¬ ì „: ");
+	for (int i = 0; i < size; i++)
+		printf("%d ", list[i].key);
+	printf("\n");
+	clock_t start = clock();
+	quickSort(list, 0, size - 1);
+	clock_t end = clock();
+	double time_taken = (double)(end - start)
+        / CLOCKS_PER_SEC * 1000; 
+	printf("ì •ë ¬ í›„: ");
+	for (int i = 0; i < size; i++)
+		printf("%d ", list[i].key);
+	printf("\n");
+	printf("O(n) : %.3f\n", time_taken);
+}
 
-// 1.2 °³¼±ÇÏ±â À§ÇÑ Ã¥°ú ´Ù¸¥ ¹öÀüÀÇ Äü ¼ÒÆ® ¾Ë°í¸®Áò Ã£¾Æ ±¸Çö
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <time.h>
-//#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t)) 
-//typedef struct {
-//    int key;
-//} element;
-//#define THRESHOLD 10  
-//void insertionSort(element a[], int left, int right) 
-//{
-//    int i, j;
-//    element temp;
-//    for (i = left + 1; i <= right; i++) {
-//        temp = a[i];
-//        j = i - 1;
-//        while (j >= left && a[j].key > temp.key) {
-//            a[j + 1] = a[j];
-//            j--;
-//        }
-//        a[j + 1] = temp;
-//    }
-//}
-//void hybridQuickSort(element a[], int left, int right)
-//{
-//    int pivot, i, j;
-//    element temp;
-//    if (right - left + 1 <= THRESHOLD) 
-//    {
-//        insertionSort(a, left, right);
-//        return;
-//    }
-//    if (left < right) 
-//    {
-//        i = left;
-//        j = right + 1;
-//        pivot = a[left].key;
-//        do {
-//            do i++; while (i <= right && a[i].key < pivot);
-//            do j--; while (a[j].key > pivot);
-//            if (i < j) SWAP(a[i], a[j], temp);
-//        } while (i < j);
-//        SWAP(a[left], a[j], temp);
-//        hybridQuickSort(a, left, j - 1);
-//        hybridQuickSort(a, j + 1, right);
-//    }
-//}
-//int main(void) {
-//    element list[] = 
-//    { {26}, {5}, {77}, {1}, {61}, {11}, {59}, {15}, {48}, {19} };
-//    int size = sizeof(list) / sizeof(list[0]);
-//    printf("Á¤·Ä Àü: ");
-//    for (int i = 0; i < size; i++)
-//        printf("%d ", list[i].key);
-//    printf("\n");
-//    clock_t start = clock();
-//    hybridQuickSort(list, 0, size - 1);
-//    clock_t end = clock();
-//    double time_taken = (double)(end - start) / CLOCKS_PER_SEC * 1000;
-//    printf("Á¤·Ä ÈÄ: ");
-//    for (int i = 0; i < size; i++)
-//        printf("%d ", list[i].key);
-//    printf("\n");
-//    printf("O(n) : %.3f\n", time_taken);
-//}
+ 1.2 ê°œì„ í•˜ê¸° ìœ„í•œ ì±…ê³¼ ë‹¤ë¥¸ ë²„ì „ì˜ í€µ ì†ŒíŠ¸ ì•Œê³ ë¦¬ì¦˜ ì°¾ì•„ êµ¬í˜„
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t)) 
+typedef struct {
+    int key;
+} element;
+#define THRESHOLD 10  
+void insertionSort(element a[], int left, int right) 
+{
+    int i, j;
+    element temp;
+    for (i = left + 1; i <= right; i++) {
+        temp = a[i];
+        j = i - 1;
+        while (j >= left && a[j].key > temp.key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = temp;
+    }
+}
+void hybridQuickSort(element a[], int left, int right)
+{
+    int pivot, i, j;
+    element temp;
+    if (right - left + 1 <= THRESHOLD) 
+    {
+        insertionSort(a, left, right);
+        return;
+    }
+    if (left < right) 
+    {
+        i = left;
+        j = right + 1;
+        pivot = a[left].key;
+        do {
+            do i++; while (i <= right && a[i].key < pivot);
+            do j--; while (a[j].key > pivot);
+            if (i < j) SWAP(a[i], a[j], temp);
+        } while (i < j);
+        SWAP(a[left], a[j], temp);
+        hybridQuickSort(a, left, j - 1);
+        hybridQuickSort(a, j + 1, right);
+    }
+}
+int main(void) {
+    element list[] = 
+    { {26}, {5}, {77}, {1}, {61}, {11}, {59}, {15}, {48}, {19} };
+    int size = sizeof(list) / sizeof(list[0]);
+    printf("ì •ë ¬ ì „: ");
+    for (int i = 0; i < size; i++)
+        printf("%d ", list[i].key);
+    printf("\n");
+    clock_t start = clock();
+    hybridQuickSort(list, 0, size - 1);
+    clock_t end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC * 1000;
+    printf("ì •ë ¬ í›„: ");
+    for (int i = 0; i < size; i++)
+        printf("%d ", list[i].key);
+    printf("\n");
+    printf("O(n) : %.3f\n", time_taken);
+
+}
