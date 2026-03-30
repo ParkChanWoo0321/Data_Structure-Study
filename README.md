@@ -122,5 +122,3 @@
 - 최악의 경우 지수 시간(입력 난이도에 따라 탐색량 변화)
 
 ---
-gcc 6-1.c -o mst && ./mst
-gcc 6-2.c -o sudoku && ./sudoku
